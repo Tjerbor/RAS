@@ -9,8 +9,6 @@ public class Line {
     static int defaultPower = 25;
 
     public static void main(String[] args) throws InterruptedException {
-        //Calibration();
-        //SetHighLow(50,0);
         LCD.drawString("Start Loop", 0, 0);
         Button.waitForAnyPress();
         LCD.clear();
@@ -38,15 +36,5 @@ public class Line {
             mRight.setPower(defaultPower);
             mLeft.setPower(defaultPower);
         }
-
-        /*
-        int powerRight = 85 - valueLeft;
-        powerRight /= 2;
-        mRight.setPower(powerRight);
-        int powerLeft = 85 - valueRight;
-        powerLeft /= 2;
-        mLeft.setPower(powerLeft);
-        LCD.drawString("L: " + valueLeft + " R: " + valueRight, 0, 0);
-        */
     }
 }
