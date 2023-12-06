@@ -7,10 +7,10 @@ public class Light
     private static final NXTMotor mRight = new NXTMotor(MotorPort.A);
     private static final NXTMotor mLeft = new NXTMotor(MotorPort.C);
 
-    static int maxPower = 20;
-    static int changeRate = 4;
-    static int powerLeft = 0;
-    static int powerRight = 0;
+    static int maxPower = 30;
+    static int changeRate = 6;
+    static int powerLeft = 5;
+    static int powerRight = 5;
 
     public static void main(String[]args) throws InterruptedException
     {
@@ -23,7 +23,7 @@ public class Light
         while(true)
         {
             FollowLine();
-            Thread.sleep(30);
+            Thread.sleep(50);
         }
     }
 
