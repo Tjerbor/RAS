@@ -1,6 +1,6 @@
 import lejos.nxt.*;
 
-public class Light {
+public class Line {
     private static final LightSensor ldRight = new LightSensor(SensorPort.S1, true);
     private static final LightSensor ldLeft = new LightSensor(SensorPort.S4, true);
     private static final NXTMotor mRight = new NXTMotor(MotorPort.A);
