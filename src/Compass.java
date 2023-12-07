@@ -6,6 +6,9 @@ public class Compass {
     private static final NXTMotor mLeft = new NXTMotor(MotorPort.C);
     private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
     static int defaultPower = 25;
+
+    private static final double error_epsilon = 10.0;
+
     public static void main(String[] args) throws InterruptedException {
         Button.waitForAnyPress();
         mRight.setPower(defaultPower);
@@ -22,12 +25,18 @@ public class Compass {
         mRight.setPower(defaultPower);
         mLeft.setPower(-defaultPower);
         float difference = 0;
-        while(difference < 170 || difference > 190){
+        while (Math.abs(difference - 180) > error_epsilon) {
             LCD.clear();
-            difference = Math.abs(inital - compass.getDegreesCartesian());
+            float currentDegrees = compass.getDegreesCartesian();
+            difference = Math.abs(inital - currentDegrees);
             LCD.drawString(String.valueOf(difference), 0, 0);
-            mRight.setPower((int) (defaultPower*((180-difference)/180)));
-            mLeft.setPower(-(int) (defaultPower*((180-difference)/180)));
+            if (inital - currentDegrees < 0) {
+                mRight.setPower((int) (defaultPower * ((180 - difference) / 180)));
+                mLeft.setPower(-(int) (defaultPower * ((180 - difference) / 180)));
+            } else {
+                mRight.setPower(-(int) (defaultPower * ((180 - difference) / 180)));
+                mLeft.setPower((int) (defaultPower * ((180 - difference) / 180)));
+            }
             Thread.sleep(200);
         }
         mRight.setPower(0);
