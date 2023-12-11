@@ -29,26 +29,24 @@ public class TurnByDegreesCommand extends AbstractCommand {
 
     @Override
     public void action() throws InterruptedException {
-        float inital = compass.getDegreesCartesian();
-        right.setPower(defaultPower);
-        left.setPower(-defaultPower);
-        float difference = 0;
-        while (Math.abs(difference - degrees) > error_epsilon) {
-            LCD.clear();
-            float currentDegrees = compass.getDegreesCartesian();
-            difference = Math.abs(inital - currentDegrees);
-            LCD.drawString(String.valueOf(difference), 0, 0);
-            if (inital - currentDegrees < 0) {
-                right.setPower((int) (defaultPower * ((degrees - difference) / degrees)));
-                left.setPower(-(int) (defaultPower * ((degrees - difference) / degrees)));
+        compass.resetCartesianZero();
+        left.setPower(defaultPower);
+        right.setPower(-defaultPower);
+        double difference = 0.0;
+        Thread.sleep(stepSize);
+
+        while (Math.abs(degrees - difference) > error_epsilon) {
+            double delta = compass.getDegreesCartesian();
+            difference = degrees - delta;
+            if (difference > 0) {
+                left.setPower(defaultPower);
+                right.setPower(-defaultPower);
             } else {
-                right.setPower(-(int) (defaultPower * ((degrees - difference) / degrees)));
-                left.setPower((int) (defaultPower * ((degrees - difference) / degrees)));
+                left.setPower(-defaultPower);
+                right.setPower(defaultPower);
             }
             Thread.sleep(stepSize);
         }
-        right.setPower(0);
-        left.setPower(0);
     }
 
     @Override
@@ -63,6 +61,6 @@ public class TurnByDegreesCommand extends AbstractCommand {
 
     @Override
     public AbstractCommand copy() {
-        return new TurnByDegreesCommand(left,right,compass,degrees,error_epsilon,defaultPower,stepSize);
+        return new TurnByDegreesCommand(left, right, compass, degrees, error_epsilon, defaultPower, stepSize);
     }
 }
