@@ -9,10 +9,9 @@ public class CommandSequence extends AbstractCommand implements Iterable<Abstrac
     List<AbstractCommand> sequence;
 
     public CommandSequence(AbstractCommand... commands) {
-        if (commands.length > 0) {
-            this.sequence = Arrays.asList(commands);
-        } else {
-            this.sequence = new ArrayList<>();
+        this.sequence = new ArrayList<>();
+        for (AbstractCommand c : commands) {
+            sequence.add(c);
         }
     }
 
@@ -30,16 +29,18 @@ public class CommandSequence extends AbstractCommand implements Iterable<Abstrac
     @Override
     public AbstractCommand backwards() {
         List<AbstractCommand> reversed = new ArrayList<>();
-        sequence.forEach(p -> reversed.add(0, p));
-        reversed.forEach(AbstractCommand::backwards);
+        for (AbstractCommand c : sequence) {
+            reversed.add(0, c.backwards());
+        }
         return new CommandSequence(reversed);
     }
 
     @Override
     public AbstractCommand inverse() {
         List<AbstractCommand> reversed = new ArrayList<>();
-        sequence.forEach(p -> reversed.add(0, p));
-        reversed.forEach(AbstractCommand::inverse);
+        for (AbstractCommand c : sequence) {
+            reversed.add(0, c.inverse());
+        }
         return new CommandSequence(reversed);
     }
 
@@ -57,7 +58,9 @@ public class CommandSequence extends AbstractCommand implements Iterable<Abstrac
     @Override
     public AbstractCommand copy() {
         List<AbstractCommand> copy = new ArrayList<>();
-        sequence.forEach(p -> copy.add(p));
+        for (AbstractCommand c : sequence) {
+            copy.add(c);
+        }
         return new CommandSequence(copy);
     }
 }
