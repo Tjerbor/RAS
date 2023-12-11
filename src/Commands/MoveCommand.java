@@ -23,7 +23,7 @@ public class MoveCommand extends AbstractCommand{
     }
 
     @Override
-    void action() throws InterruptedException {
+    public void action() throws InterruptedException {
         left.setPower(powerLeft);
         right.setPower(powerRight);
         Thread.sleep(stepSize);
@@ -32,12 +32,17 @@ public class MoveCommand extends AbstractCommand{
     }
 
     @Override
-    AbstractCommand inverse() {
+    public AbstractCommand backwards() {
         return new MoveCommand(left,right,-powerLeft,-powerRight,stepSize);
     }
 
     @Override
-    AbstractCommand sequenceInverse() {
+    public AbstractCommand inverse() {
         return this;
+    }
+
+    @Override
+    public AbstractCommand copy() {
+        return new MoveCommand(left,right,powerLeft,powerRight,stepSize);
     }
 }

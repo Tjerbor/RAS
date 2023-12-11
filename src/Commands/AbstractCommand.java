@@ -1,9 +1,11 @@
 package Commands;
 
-import java.util.function.Consumer;
-
 public abstract class AbstractCommand {
-    abstract void action() throws InterruptedException;
-    abstract AbstractCommand inverse();
-    abstract AbstractCommand sequenceInverse();
+    public abstract void action() throws InterruptedException;
+
+    public abstract AbstractCommand backwards();
+
+    public abstract AbstractCommand inverse();
+
+    public abstract AbstractCommand copy();
 }

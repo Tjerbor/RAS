@@ -2,13 +2,18 @@ package Commands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
-public class CommandSequence extends AbstractCommand {
+public class CommandSequence extends AbstractCommand implements Iterable<AbstractCommand> {
     List<AbstractCommand> sequence;
 
     public CommandSequence(AbstractCommand... commands) {
-        this.sequence = Arrays.asList(commands);
+        if (commands.length > 0) {
+            this.sequence = Arrays.asList(commands);
+        } else {
+            this.sequence = new ArrayList<>();
+        }
     }
 
     public CommandSequence(List<AbstractCommand> sequence) {
@@ -16,25 +21,50 @@ public class CommandSequence extends AbstractCommand {
     }
 
     @Override
-    void action() throws InterruptedException {
+    public void action() throws InterruptedException {
         for (AbstractCommand abstractCommand : sequence) {
             abstractCommand.action();
         }
     }
 
     @Override
-    AbstractCommand inverse() {
+    public AbstractCommand backwards() {
+        List<AbstractCommand> reversed = new ArrayList<>();
+        sequence.forEach(p -> reversed.add(0, p));
+        reversed.forEach(AbstractCommand::backwards);
+        return new CommandSequence(reversed);
+    }
+
+    @Override
+    public AbstractCommand inverse() {
         List<AbstractCommand> reversed = new ArrayList<>();
         sequence.forEach(p -> reversed.add(0, p));
         reversed.forEach(AbstractCommand::inverse);
         return new CommandSequence(reversed);
     }
 
+    public void add(AbstractCommand... commands) {
+        for (AbstractCommand c : commands) {
+            sequence.add(c);
+        }
+    }
+
     @Override
-    AbstractCommand sequenceInverse() {
-        List<AbstractCommand> reversed = new ArrayList<>();
-        sequence.forEach(p -> reversed.add(0, p));
-        reversed.forEach(AbstractCommand::sequenceInverse);
-        return new CommandSequence(reversed);
+    public Iterator<AbstractCommand> iterator() {
+        return null;
+    }
+
+    private class CommandSequenceIterator implements Iterator<AbstractCommand> {
+        int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index < sequence.size();
+        }
+
+        @Override
+        public AbstractCommand next() {
+            return sequence.get(index++);
+        }
     }
 }

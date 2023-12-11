@@ -28,7 +28,7 @@ public class TurnByDegreesCommand extends AbstractCommand {
     }
 
     @Override
-    void action() throws InterruptedException {
+    public void action() throws InterruptedException {
         float inital = compass.getDegreesCartesian();
         right.setPower(defaultPower);
         left.setPower(-defaultPower);
@@ -52,12 +52,12 @@ public class TurnByDegreesCommand extends AbstractCommand {
     }
 
     @Override
-    AbstractCommand inverse() {
+    public AbstractCommand backwards() {
         return new TurnByDegreesCommand(left, right, compass, 320 - degrees, error_epsilon, -defaultPower, stepSize);
     }
 
     @Override
-    AbstractCommand sequenceInverse() {
+    public AbstractCommand inverse() {
         return new TurnByDegreesCommand(left, right, compass, 320 - degrees, error_epsilon, defaultPower, stepSize);
     }
 }
