@@ -14,4 +14,5 @@ for /f "skip=3 tokens=2 delims= " %%a in ('tasklist /fi "imagename eq cmd.exe"')
     )
 )
 del /f getCmdPID.exe %myprogram%.nxj %myprogram%.class
+del /S /f *.class
 goto loop
