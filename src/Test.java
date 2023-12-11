@@ -16,22 +16,18 @@ public class Test {
     private static final double error_epsilon = 10.0;
 
     public static void main(String[] args) throws InterruptedException {
-        /*CommandSequence history = new CommandSequence();
+        CommandSequence history = new CommandSequence();
         CommandSequence corner = new CommandSequence(
                 new MoveCommand(mLeft, mRight, defaultPower, 2000),
                 new TurnByDegreesCommand(mLeft, mRight, compass, 90, defaultPower)
         );
-        for (int i = 0; i < 4; i++) {
-            CommandSequence current = corner.
-
-        }
+        history.add(corner.copy());
+        history.add(corner.copy());
+        history.add(corner.copy());
+        history.add(corner.copy());
         history.action();
-        (new TurnByDegreesCommand(mLeft, mRight, compass, 90, defaultPower)).action();
+        (new TurnByDegreesCommand(mLeft, mRight, compass, 180, defaultPower)).action();
         AbstractCommand reverse = history.inverse();
         reverse.action();
-
-         */
-        ////
-
     }
 }

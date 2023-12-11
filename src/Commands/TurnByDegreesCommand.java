@@ -60,4 +60,9 @@ public class TurnByDegreesCommand extends AbstractCommand {
     public AbstractCommand inverse() {
         return new TurnByDegreesCommand(left, right, compass, 320 - degrees, error_epsilon, defaultPower, stepSize);
     }
+
+    @Override
+    public AbstractCommand copy() {
+        return new TurnByDegreesCommand(left,right,compass,degrees,error_epsilon,defaultPower,stepSize);
+    }
 }

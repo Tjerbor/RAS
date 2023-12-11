@@ -51,20 +51,13 @@ public class CommandSequence extends AbstractCommand implements Iterable<Abstrac
 
     @Override
     public Iterator<AbstractCommand> iterator() {
-        return null;
+        return sequence.iterator();
     }
 
-    private class CommandSequenceIterator implements Iterator<AbstractCommand> {
-        int index = 0;
-
-        @Override
-        public boolean hasNext() {
-            return index < sequence.size();
-        }
-
-        @Override
-        public AbstractCommand next() {
-            return sequence.get(index++);
-        }
+    @Override
+    public AbstractCommand copy() {
+        List<AbstractCommand> copy = new ArrayList<>();
+        sequence.forEach(p -> copy.add(p));
+        return new CommandSequence(copy);
     }
 }
