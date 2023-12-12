@@ -1,24 +1,21 @@
-import Commands.AbstractCommand;
-import Commands.CommandSequence;
-import Commands.MoveCommand;
-import Commands.TurnByDegreesCommand;
-import lejos.nxt.*;
+package scripts;
+
+import commands.CommandSequence;
+import commands.MoveCommand;
+import commands.TurnByDegreesCommand;
+import lejos.nxt.Button;
+import lejos.nxt.MotorPort;
+import lejos.nxt.NXTMotor;
+import lejos.nxt.SensorPort;
 import lejos.nxt.addon.CompassHTSensor;
 
 public class Test {
-    private static final NXTMotor mRight = new NXTMotor(MotorPort.A);
-    private static final NXTMotor mLeft = new NXTMotor(MotorPort.C);
-    private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S1);
-    static int defaultPower = 25;
-
-    private static final double error_epsilon = 10.0;
-
     public static void main(String[] args) throws InterruptedException {
         Button.waitForAnyPress();
         CommandSequence corner = new CommandSequence(
-                new MoveCommand(mLeft, mRight, defaultPower, 2000),
-                new TurnByDegreesCommand(mLeft, mRight, compass, 90, 15, defaultPower, 50),
-                new MoveCommand(mLeft, mRight, defaultPower, 2000)
+                new MoveCommand(2000),
+                new TurnByDegreesCommand(90),
+                new MoveCommand(000)
         );
         corner.action();
 

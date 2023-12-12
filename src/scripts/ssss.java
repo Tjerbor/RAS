@@ -1,5 +1,4 @@
-import lejos.nxt.Button;
-import lejos.nxt.LCD;
+package scripts;
 
 public class ssss {
   public static void main(String[] args) throws Exception {
