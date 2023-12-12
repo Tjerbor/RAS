@@ -1,3 +1,5 @@
+package scripts;
+
 import commands.CommandSequence;
 import commands.MoveCommand;
 import commands.TurnByDegreesCommand;

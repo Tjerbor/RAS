@@ -1,3 +1,5 @@
+package scripts;
+
 import lejos.nxt.*;
 
 public class Line {
