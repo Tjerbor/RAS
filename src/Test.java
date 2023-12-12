@@ -1,13 +1,7 @@
-package scripts;
-
 import commands.CommandSequence;
 import commands.MoveCommand;
 import commands.TurnByDegreesCommand;
 import lejos.nxt.Button;
-import lejos.nxt.MotorPort;
-import lejos.nxt.NXTMotor;
-import lejos.nxt.SensorPort;
-import lejos.nxt.addon.CompassHTSensor;
 
 public class Test {
     public static void main(String[] args) throws InterruptedException {

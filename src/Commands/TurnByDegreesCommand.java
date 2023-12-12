@@ -1,8 +1,8 @@
-package Commands;
+package commands;
 
-import lejos.nxt.LCD;
 import lejos.nxt.NXTMotor;
 import lejos.nxt.addon.CompassHTSensor;
+import settings.Settings;
 
 public class TurnByDegreesCommand extends AbstractCommand {
     private NXTMotor left;
@@ -23,8 +23,12 @@ public class TurnByDegreesCommand extends AbstractCommand {
         this.stepSize = stepSize;
     }
 
-    public TurnByDegreesCommand(NXTMotor left, NXTMotor right, CompassHTSensor compass, int degrees, int defaultPower) {
-        this(left, right, compass, degrees, 10, defaultPower, 200);
+    public TurnByDegreesCommand(int degrees, int error_epsilon, int defaultPower) {
+        this(Settings.mLeft, Settings.mRight, Settings.compass, degrees, error_epsilon, defaultPower, 100);
+    }
+
+    public TurnByDegreesCommand(int degrees) {
+        this(degrees, Settings.error_epsilon, Settings.defaultPower);
     }
 
     @Override

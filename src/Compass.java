@@ -1,5 +1,3 @@
-package scripts;
-
 import lejos.nxt.*;
 import lejos.nxt.addon.CompassHTSensor;
 

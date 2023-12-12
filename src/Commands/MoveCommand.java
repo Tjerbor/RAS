@@ -1,8 +1,9 @@
-package Commands;
+package commands;
 
 import lejos.nxt.NXTMotor;
+import settings.Settings;
 
-public class MoveCommand extends AbstractCommand{
+public class MoveCommand extends AbstractCommand {
     private NXTMotor left;
     private NXTMotor right;
     private int powerLeft;
@@ -18,8 +19,12 @@ public class MoveCommand extends AbstractCommand{
         this.stepSize = stepSize;
     }
 
-    public MoveCommand(NXTMotor left, NXTMotor right, int power, int stepSize) {
-        this(left,right,power,power,stepSize);
+    public MoveCommand(int power, int stepSize) {
+        this(Settings.mLeft, Settings.mRight, Settings.defaultPower, power, stepSize);
+    }
+
+    public MoveCommand(int stepSize) {
+        this(Settings.defaultPower, stepSize);
     }
 
     @Override
@@ -33,7 +38,7 @@ public class MoveCommand extends AbstractCommand{
 
     @Override
     public AbstractCommand backwards() {
-        return new MoveCommand(left,right,-powerLeft,-powerRight,stepSize);
+        return new MoveCommand(left, right, -powerLeft, -powerRight, stepSize);
     }
 
     @Override
@@ -43,6 +48,6 @@ public class MoveCommand extends AbstractCommand{
 
     @Override
     public AbstractCommand copy() {
-        return new MoveCommand(left,right,powerLeft,powerRight,stepSize);
+        return new MoveCommand(left, right, powerLeft, powerRight, stepSize);
     }
 }
