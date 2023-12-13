@@ -19,8 +19,12 @@ public class MoveCommand extends AbstractCommand {
         this.stepSize = stepSize;
     }
 
+    public MoveCommand(int powerLeft, int powerRight, int stepSize) {
+        this(Settings.mLeft, Settings.mRight, powerLeft, powerRight, stepSize);
+    }
+
     public MoveCommand(int power, int stepSize) {
-        this(Settings.mLeft, Settings.mRight, Settings.defaultPower, power, stepSize);
+        this(power, power, stepSize);
     }
 
     public MoveCommand(int stepSize) {
@@ -43,7 +47,7 @@ public class MoveCommand extends AbstractCommand {
 
     @Override
     public AbstractCommand inverse() {
-        return this;
+        return new MoveCommand(left, right, powerRight, powerLeft, stepSize);
     }
 
     @Override

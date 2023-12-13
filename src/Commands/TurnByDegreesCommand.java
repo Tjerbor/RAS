@@ -1,5 +1,6 @@
 package Commands;
 
+import lejos.nxt.LCD;
 import lejos.nxt.NXTMotor;
 import lejos.nxt.addon.CompassHTSensor;
 import settings.Settings;
@@ -33,34 +34,27 @@ public class TurnByDegreesCommand extends AbstractCommand {
 
     @Override
     public void action() throws InterruptedException {
-        compass.resetCartesianZero();
-        left.setPower(defaultPower);
-        right.setPower(-defaultPower);
-        double difference = 0.0;
-        Thread.sleep(stepSize);
-
-        while (Math.abs(degrees - difference) > error_epsilon) {
-            double delta = compass.getDegreesCartesian();
-            difference = degrees - delta;
-            if (difference > 0) {
-                left.setPower(defaultPower);
-                right.setPower(-defaultPower);
-            } else {
-                left.setPower(-defaultPower);
-                right.setPower(defaultPower);
-            }
-            Thread.sleep(stepSize);
+        if (degrees > 0) {
+            left.setPower(defaultPower);
+            right.setPower(-defaultPower);
+        } else {
+            left.setPower(-defaultPower);
+            right.setPower(defaultPower);
         }
+        degrees = degrees < 0 ? -degrees : degrees;
+        Thread.sleep((int) ((degrees / 360.0) * (60000.0 / 13.75)));
+        left.setPower(0);
+        right.setPower(0);
     }
 
     @Override
     public AbstractCommand backwards() {
-        return new TurnByDegreesCommand(left, right, compass, 320 - degrees, error_epsilon, -defaultPower, stepSize);
+        return new TurnByDegreesCommand(left, right, compass, -degrees, error_epsilon, -defaultPower, stepSize);
     }
 
     @Override
     public AbstractCommand inverse() {
-        return new TurnByDegreesCommand(left, right, compass, 320 - degrees, error_epsilon, defaultPower, stepSize);
+        return new TurnByDegreesCommand(left, right, compass, -degrees, error_epsilon, defaultPower, stepSize);
     }
 
     @Override
