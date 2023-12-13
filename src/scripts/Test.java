@@ -1,8 +1,8 @@
 package scripts;
 
-import commands.CommandSequence;
-import commands.MoveCommand;
-import commands.TurnByDegreesCommand;
+import Commands.CommandSequence;
+import Commands.MoveCommand;
+import Commands.TurnByDegreesCommand;
 import lejos.nxt.Button;
 
 public class Test {

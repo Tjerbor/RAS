@@ -1,4 +1,4 @@
-package commands;
+package Commands;
 
 public abstract class AbstractCommand {
     public abstract void action() throws InterruptedException;
