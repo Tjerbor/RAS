@@ -4,6 +4,8 @@ import lejos.nxt.Button;
 import lejos.nxt.LCD;
 import settings.Settings;
 
+import java.util.ArrayList;
+
 public class compasstest {
     public static void main(String[] args) throws InterruptedException {
         Button.waitForAnyPress();
@@ -36,13 +38,12 @@ public class compasstest {
     }
 
     public static int filteredStart() {
-        int start[] = new int[0];
+        ArrayList<Float> start = new ArrayList<>();
         long s0 = System.currentTimeMillis() + 1000;
         while(s0 < System.currentTimeMillis()) {
-            start.
+            start.add(Settings.compass.getDegrees());
         }
-
-
-        return start;
+        //TODO avg von arraylist nehmen
+        return start ;
     }
 }
