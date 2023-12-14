@@ -5,6 +5,7 @@ import lejos.nxt.LCD;
 import settings.Settings;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 
 public class compasstest {
     public static void main(String[] args) throws InterruptedException {
@@ -19,7 +20,7 @@ public class compasstest {
     public static void turn(int degree) throws InterruptedException {
         final int cycles = 2;
         final int abweichung = 1;
-        float start = Settings.compass.getDegrees();
+        float start = filteredStart();
         float end = (start + degree) % 360;
         int i = 0;
         //solange unterschied größer 10°
@@ -43,7 +44,12 @@ public class compasstest {
         while(s0 < System.currentTimeMillis()) {
             start.add(Settings.compass.getDegrees());
         }
+        double start1 = start
+                .stream()
+                .mapToDouble(a -> a)
+                .summaryStatistics()
+                .getAverage();
         //TODO avg von arraylist nehmen
-        return start ;
+        return (int) start1 ;
     }
 }
