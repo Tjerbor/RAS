@@ -1,3 +1,5 @@
+package scripts;
+
 import lejos.nxt.*;
 
 public class Line {
@@ -27,7 +29,7 @@ public class Line {
     public static void FollowLight() {
         int valueRight = ldRight.getLightValue();
         int valueLeft = ldLeft.getLightValue();
-
+        //
         if (valueLeft < valueRight) {
             mRight.setPower(mRight.getPower() - 1 < 0 ? 0 : mRight.getPower() - 2);
             mLeft.setPower(defaultPower);

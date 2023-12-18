@@ -1,5 +1,5 @@
 :loop
-set /p "myprogram=Enter class name to transfer:"
+set myprogram=Transfer
 Start nxjc %myprogram%.java
 PING localhost -n 2 >NUL
 Start nxjlink -o %myprogram%.nxj %myprogram%
@@ -15,4 +15,5 @@ for /f "skip=3 tokens=2 delims= " %%a in ('tasklist /fi "imagename eq cmd.exe"')
 )
 del /f getCmdPID.exe %myprogram%.nxj %myprogram%.class
 del /S /f *.class
+pause
 goto loop
