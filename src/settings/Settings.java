@@ -14,6 +14,4 @@ public class Settings {
     public static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
     public static int defaultPower = 25;
     public static final int error_epsilon = 10;
-
-    // 13,75/60
 }

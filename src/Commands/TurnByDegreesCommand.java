@@ -1,6 +1,5 @@
 package Commands;
 
-import lejos.nxt.LCD;
 import lejos.nxt.NXTMotor;
 import lejos.nxt.addon.CompassHTSensor;
 import settings.Settings;
@@ -29,7 +28,7 @@ public class TurnByDegreesCommand extends AbstractCommand {
     }
 
     public TurnByDegreesCommand(int degrees) {
-        this(degrees, Settings.error_epsilon, Settings.defaultPower);
+        this(degrees, Settings.error_epsilon, 25);
     }
 
     @Override
@@ -40,8 +39,9 @@ public class TurnByDegreesCommand extends AbstractCommand {
         } else {
             left.setPower(-defaultPower);
             right.setPower(defaultPower);
+            degrees = -degrees;
         }
-        degrees = degrees < 0 ? -degrees : degrees;
+        //13,75 Umdrehungen pro Minute bei Power (l:25,r:-25)
         Thread.sleep((int) ((degrees / 360.0) * (60000.0 / 13.75)));
         left.setPower(0);
         right.setPower(0);
