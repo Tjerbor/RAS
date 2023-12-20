@@ -1,3 +1,5 @@
+package scripts;
+
 import lejos.nxt.Motor;
 import lejos.nxt.Button;
 import lejos.nxt.LCD;
