@@ -14,4 +14,13 @@ public class Settings {
     public static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
     public static int defaultPower = 25;
     public static final int error_epsilon = 10;
+
+    static float multiplicatorLeft = 1f;
+    static float multiplicatorRight = 1.1f; //gleicht Fehler der Motoren aus
+
+    public static int GetAdjustedPower(float power, boolean right){
+        float multi = right ? multiplicatorRight : multiplicatorLeft;
+
+        return (int) (power * multi);
+    }
 }

@@ -3,13 +3,13 @@ package scripts;
 import lejos.nxt.*;
 import lejos.nxt.addon.CompassHTSensor;
 
+import static settings.Settings.GetAdjustedPower;
+
 public class Compass {
     private static final NXTMotor mRight = new NXTMotor(MotorPort.A);
     private static final NXTMotor mLeft = new NXTMotor(MotorPort.C);
     private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
     static int defaultPower = 30;
-    static float multiplicatorLeft = 1f;
-    static float multiplicatorRight = 1;//.1f; //gleicht Fehler der Motoren aus
     static int minPower = 13;
 
     private static final double error_epsilon = 0.0;
@@ -18,15 +18,15 @@ public class Compass {
         boolean test = false;
         Button.waitForAnyPress();
         if (!test) {
-            mRight.setPower((int) (defaultPower * multiplicatorRight));
-            mLeft.setPower((int) (defaultPower * multiplicatorLeft));
+            mRight.setPower(GetAdjustedPower(defaultPower,true));
+            mLeft.setPower(GetAdjustedPower(defaultPower,false));
             Thread.sleep(2000);
         }
         turn(test);
         //testCompass(1000);
         if (!test) {
-            mRight.setPower((int) (defaultPower * multiplicatorRight));
-            mLeft.setPower((int) (defaultPower * multiplicatorLeft));
+            mRight.setPower(GetAdjustedPower(defaultPower,true));
+            mLeft.setPower(GetAdjustedPower(defaultPower,false));
             Thread.sleep(2000);
         }
     }
@@ -48,8 +48,8 @@ public class Compass {
             //Thread.sleep(waitTime);
 
             Button.waitForAnyPress();
-            mRight.setPower((int) (defaultPower * multiplicatorRight));
-            mLeft.setPower(-(int) (defaultPower * multiplicatorLeft));
+            mRight.setPower(GetAdjustedPower(defaultPower,true));
+            mLeft.setPower(-GetAdjustedPower(defaultPower,false));
             Thread.sleep(waitTime);
         }
     }
@@ -112,11 +112,11 @@ public class Compass {
                 LCD.drawString("in:" + (initial) + " tar:" + (target), 0, 2);
                 if(!test){
                     if (turnRight) {
-                        mRight.setPower(-((int) (power * multiplicatorRight)));
-                        mLeft.setPower(((int) (power * multiplicatorLeft)));
+                        mRight.setPower(-GetAdjustedPower(power,true));
+                        mLeft.setPower(GetAdjustedPower(power,false));
                     } else {
-                        mRight.setPower(((int) (power * multiplicatorRight)));
-                        mLeft.setPower(-((int) (power * multiplicatorLeft)));
+                        mRight.setPower(GetAdjustedPower(power,true));
+                        mLeft.setPower(-GetAdjustedPower(power,false));
                     }
                 }
                 Thread.sleep(50);

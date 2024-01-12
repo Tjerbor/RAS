@@ -8,6 +8,8 @@ import lejos.nxt.addon.CompassHTSensor;
 import settings.Settings;
 import lejos.nxt.*;
 
+import static settings.Settings.GetAdjustedPower;
+
 public class LineWithCommands {
     private static final LightSensor ldRight = Settings.ldRight;
     private static final LightSensor ldLeft = Settings.ldLeft;
@@ -40,7 +42,7 @@ public class LineWithCommands {
             float compassCurrent = compass.getDegreesCartesian();
             difference = (compassInitial > compassCurrent) ? compassInitial - compassCurrent : compassCurrent - compassInitial;
             if(difference > 180){
-                difference -= 180;
+                difference = 360 - difference;
             }
 
             if(!turnedAround && difference > 175){
@@ -55,9 +57,9 @@ public class LineWithCommands {
         //(new TurnByDegreesCommand(180)).action();
         Compass.turn(false);
 
-        mRight.setPower(-defaultPower);
-        mLeft.setPower(-defaultPower);
-        Thread.sleep(2000);
+        mRight.setPower(-GetAdjustedPower(defaultPower,true));
+        mLeft.setPower(-GetAdjustedPower(defaultPower,false));
+        Thread.sleep(1000);
         mRight.setPower(0);
         mLeft.setPower(0);
         Thread.sleep(1000);

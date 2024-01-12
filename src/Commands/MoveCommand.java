@@ -3,6 +3,8 @@ package Commands;
 import lejos.nxt.NXTMotor;
 import settings.Settings;
 
+import static settings.Settings.GetAdjustedPower;
+
 public class MoveCommand extends AbstractCommand {
     private NXTMotor left;
     private NXTMotor right;
@@ -33,8 +35,8 @@ public class MoveCommand extends AbstractCommand {
 
     @Override
     public void action() throws InterruptedException {
-        left.setPower(powerLeft);
-        right.setPower(powerRight);
+        left.setPower(GetAdjustedPower(powerLeft,false));
+        right.setPower(GetAdjustedPower(powerRight,true));
         Thread.sleep(stepSize);
         left.setPower(0);
         right.setPower(0);
