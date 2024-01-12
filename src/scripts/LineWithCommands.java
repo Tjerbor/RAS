@@ -4,6 +4,7 @@ import Commands.AbstractCommand;
 import Commands.CommandSequence;
 import Commands.MoveCommand;
 import Commands.TurnByDegreesCommand;
+import lejos.nxt.addon.CompassHTSensor;
 import settings.Settings;
 import lejos.nxt.*;
 
@@ -15,6 +16,7 @@ public class LineWithCommands {
     private static int defaultPower = Settings.defaultPower;
     private static int sleep = 50;
     private static CommandSequence history = new CommandSequence();
+    private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
 
     public static void main(String[] args) throws InterruptedException {
         //Calibration();
@@ -27,10 +29,38 @@ public class LineWithCommands {
             FollowLight();
         }
          */
-        for (int i = 0; i < 400; i++) {
+        float compassInitial = compass.getDegreesCartesian();
+        float difference = 0;
+        boolean turnedAround = false;
+
+        while (difference > 3 || !turnedAround) {
+
             FollowLight();
+
+            float compassCurrent = compass.getDegreesCartesian();
+            difference = (compassInitial > compassCurrent) ? compassInitial - compassCurrent : compassCurrent - compassInitial;
+            if(difference > 180){
+                difference -= 180;
+            }
+
+            if(!turnedAround && difference > 175){
+                turnedAround = true;
+            }
+
+            LCD.clear();
+            LCD.drawString("difference:" + (difference), 0, 0);
+            LCD.drawString("turnedAround:" + (turnedAround)+ " ", 0, 1);
         }
-        (new TurnByDegreesCommand(180)).action();
+
+        //(new TurnByDegreesCommand(180)).action();
+        Compass.turn(false);
+
+        mRight.setPower(-defaultPower);
+        mLeft.setPower(-defaultPower);
+        Thread.sleep(2000);
+        mRight.setPower(0);
+        mLeft.setPower(0);
+        Thread.sleep(1000);
         (history.inverse()).action();
     }
 

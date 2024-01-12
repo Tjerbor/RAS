@@ -10,7 +10,7 @@ public class Compass {
     static int defaultPower = 30;
     static float multiplicatorLeft = 1f;
     static float multiplicatorRight = 1;//.1f; //gleicht Fehler der Motoren aus
-    static int minPower = 12;
+    static int minPower = 13;
 
     private static final double error_epsilon = 0.0;
 
@@ -54,15 +54,21 @@ public class Compass {
         }
     }
 
-    private static void turn(boolean test) throws InterruptedException {
-        mRight.setPower(0);
-        mLeft.setPower(0);
-        Thread.sleep(500);
-        float initial = compass.getDegreesCartesian();
+    public static float GetTarget(float initial){
         float target = (initial - 180);
         if(target < 0){
             target += 360;
         }
+        return target;
+    }
+
+    public static void turn(boolean test) throws InterruptedException {
+        mRight.setPower(0);
+        mLeft.setPower(0);
+        Thread.sleep(500);
+        float initial = compass.getDegreesCartesian();
+        float target = GetTarget(initial);
+
         float difference = 180;
         float current = initial;
         float currentStanding = initial;
@@ -96,12 +102,7 @@ public class Compass {
                 if (difference < 0){
                     difference += 360;
                 }
-            /*
-            difference = (target > current) ? target - current : current - target;
-            if(difference > 180){
-                difference -= 180;
-            }
-            */
+
                 float power = defaultPower * (difference / 90);
                 power = power > defaultPower ? defaultPower : power;
                 power = power < minPower ? minPower : power;
