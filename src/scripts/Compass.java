@@ -17,6 +17,10 @@ public class Compass {
 
     public static void main(String[] args) throws InterruptedException {
 
+        LCD.drawString("Press to start", 0, 0);
+        Button.waitForAnyPress();
+        LCD.clear();
+
         testCompass();
 
         /*boolean test = false;
@@ -37,9 +41,9 @@ public class Compass {
 
     private static void testCompass() throws InterruptedException{
 
-        (new MoveCommand(20,2000)).action();
+        (new MoveCommand(30,2000)).action();
         turn(false);
-        (new MoveCommand(20,2000)).action();
+        (new MoveCommand(30,2000)).action();
     }
 
     public static float GetTarget(float initial){
