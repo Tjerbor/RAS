@@ -1,8 +1,7 @@
 import scripts.LineWithCommandsJoscha;
-import scripts.LineWithCommandsThiemo;
 
-public class Transfer {
+public class FollowerJoscha {
     public static void main(String[] args) throws InterruptedException {
-        LineWithCommandsThiemo.main(null);
+        LineWithCommandsJoscha.main(null);
     }
 }

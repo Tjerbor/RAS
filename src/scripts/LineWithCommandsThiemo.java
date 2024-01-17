@@ -31,6 +31,7 @@ public class LineWithCommandsThiemo {
             FollowLight();
         }
         (new TurnByDegreesCommand(180)).action();
+        (new MoveCommand(-20,300)).action();
         (history.inverse()).action();
     }
 

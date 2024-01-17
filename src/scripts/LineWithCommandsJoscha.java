@@ -3,6 +3,7 @@ package scripts;
 import Commands.AbstractCommand;
 import Commands.CommandSequence;
 import Commands.MoveCommand;
+import Commands.TurnByDegreesCommand;
 import lejos.nxt.*;
 import lejos.nxt.addon.CompassHTSensor;
 import settings.Settings;
@@ -53,15 +54,15 @@ public class LineWithCommandsJoscha {
             LCD.drawString("turnedAround:" + (turnedAround)+ " ", 0, 1);
         }
 
-        //(new TurnByDegreesCommand(180)).action();
-        Compass.turn(false);
+        (new TurnByDegreesCommand(180)).action();
+        //Compass.turn(false);
 
         mRight.setPower(-GetAdjustedPower(defaultPower,true));
         mLeft.setPower(-GetAdjustedPower(defaultPower,false));
         Thread.sleep(1000);
         mRight.setPower(0);
         mLeft.setPower(0);
-        Thread.sleep(1000);
+        Thread.sleep(300);
         (history.inverse()).action();
     }
 
