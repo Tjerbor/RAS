@@ -1,4 +1,4 @@
-set myprogram=CompassCalibration
+set myprogram=CompassCalib
 Start nxjc %myprogram%.java
 PING localhost -n 2 >NUL
 Start nxjlink -o %myprogram%.nxj %myprogram%
