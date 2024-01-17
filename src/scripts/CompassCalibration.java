@@ -1,15 +1,13 @@
 package scripts;
 
-import lejos.nxt.Button;
-import lejos.nxt.MotorPort;
-import lejos.nxt.NXTMotor;
-import lejos.nxt.SensorPort;
+import lejos.nxt.*;
 import lejos.nxt.addon.CompassHTSensor;
+import settings.Settings;
 
 public class CompassCalibration {
     private static final NXTMotor mRight = new NXTMotor(MotorPort.A);
     private static final NXTMotor mLeft = new NXTMotor(MotorPort.C);
-    private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
+    private static final CompassHTSensor compass = Settings.compass;
     public static void main(String[] args) throws InterruptedException {
         Button.waitForAnyPress();
         compass.startCalibration();
