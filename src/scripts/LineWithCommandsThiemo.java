@@ -7,7 +7,7 @@ import Commands.TurnByDegreesCommand;
 import settings.Settings;
 import lejos.nxt.*;
 
-public class LineWithCommands {
+public class LineWithCommandsThiemo {
     private static final LightSensor ldRight = Settings.ldRight;
     private static final LightSensor ldLeft = Settings.ldLeft;
     private static final NXTMotor mRight = Settings.mRight;

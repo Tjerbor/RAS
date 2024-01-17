@@ -1,7 +1,7 @@
-import scripts.LineWithCommands;
+import scripts.LineWithCommandsThiemo;
 
 public class Transfer {
     public static void main(String[] args) throws InterruptedException {
-        LineWithCommands.main(null);
+        LineWithCommandsThiemo.main(null);
     }
 }
