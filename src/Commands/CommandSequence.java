@@ -19,9 +19,9 @@ public class CommandSequence extends AbstractCommand implements Iterable<Abstrac
     }
 
     @Override
-    public void action() throws InterruptedException {
+    public void action(boolean waitExtraTime) throws InterruptedException {
         for (AbstractCommand abstractCommand : sequence) {
-            abstractCommand.action();
+            abstractCommand.action(waitExtraTime);
         }
     }
 

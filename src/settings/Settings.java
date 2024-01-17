@@ -16,7 +16,7 @@ public class Settings {
     public static final int error_epsilon = 10;
 
     static float multiplicatorLeft = 1f;
-    static float multiplicatorRight = 1.1f; //gleicht Fehler der Motoren aus
+    static float multiplicatorRight = 1f; //gleicht Fehler der Motoren aus
 
     public static int GetAdjustedPower(float power, boolean right){
         float multi = right ? multiplicatorRight : multiplicatorLeft;

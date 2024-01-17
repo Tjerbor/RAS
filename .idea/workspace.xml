@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ddea9a1-9af2-427f-9550-707591e7bb88" name="Changes" comment="Guter Line Follower" />
+    <list default="true" id="7ddea9a1-9af2-427f-9550-707591e7bb88" name="Changes" comment="LineWithCommands sollte jetzt nach einmal im Kreis fahren umdrehen (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde).&#10;Fehler behoben durch den manchmal schon nach dem halben Kreis umgedreht wurde.">
+      <change afterPath="$PROJECT_DIR$/src/scripts/compasstest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/AbstractCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AbstractCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/CommandSequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/CommandSequence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/MoveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/TurnByDegreesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/TurnByDegreesCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Line - Kopie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/Compass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/Compass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/Line - Kopie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/LineWithCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/LineWithCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/Settings.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -21,6 +42,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2ZAnVNdz7s5Y7yRFd9Frvkol87r" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +53,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Program Files (x86)/leJOS NXJ/lib/nxt/classes.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -57,7 +81,28 @@
       <option name="project" value="LOCAL" />
       <updated>1701877293426</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Compass.turn(false) dreht den Roboter jetzt um 180° (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde)">
+      <created>1705070068539</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705070068539</updated>
+    </task>
+    <task id="LOCAL-00004" summary="LineWithCommands sollte jetzt nach einmal im Kreis fahren umdrehen (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde).&#10;Dreht manchmal aber schon nach dem halben Kreis um.">
+      <created>1705073719546</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705073719546</updated>
+    </task>
+    <task id="LOCAL-00005" summary="LineWithCommands sollte jetzt nach einmal im Kreis fahren umdrehen (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde).&#10;Fehler behoben durch den manchmal schon nach dem halben Kreis umgedreht wurde.">
+      <created>1705075834509</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705075834509</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -74,6 +119,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test Commit" />
     <MESSAGE value="Guter Line Follower" />
-    <option name="LAST_COMMIT_MESSAGE" value="Guter Line Follower" />
+    <MESSAGE value="Compass.turn(false) dreht den Roboter jetzt um 180° (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde)" />
+    <MESSAGE value="LineWithCommands sollte jetzt nach einmal im Kreis fahren umdrehen (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde).&#10;Dreht manchmal aber schon nach dem halben Kreis um." />
+    <MESSAGE value="LineWithCommands sollte jetzt nach einmal im Kreis fahren umdrehen (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde).&#10;Fehler behoben durch den manchmal schon nach dem halben Kreis umgedreht wurde." />
+    <option name="LAST_COMMIT_MESSAGE" value="LineWithCommands sollte jetzt nach einmal im Kreis fahren umdrehen (nachdem der Kompass vorher mit CompassCalibration.main() calibriert wurde).&#10;Fehler behoben durch den manchmal schon nach dem halben Kreis umgedreht wurde." />
   </component>
 </project>

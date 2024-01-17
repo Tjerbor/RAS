@@ -33,11 +33,16 @@ public class MoveCommand extends AbstractCommand {
         this(Settings.defaultPower, stepSize);
     }
 
+    public MoveCommand(int stepSize) {
+        this(stepSize);
+    }
+
     @Override
     public void action() throws InterruptedException {
         left.setPower(GetAdjustedPower(powerLeft,false));
         right.setPower(GetAdjustedPower(powerRight,true));
-        Thread.sleep(stepSize);
+        /*int waitTime = waitExtraTime ? extraTime + stepSize : stepSize;
+        Thread.sleep(waitTime);*/
         left.setPower(0);
         right.setPower(0);
     }

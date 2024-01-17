@@ -32,7 +32,7 @@ public class TurnByDegreesCommand extends AbstractCommand {
     }
 
     @Override
-    public void action() throws InterruptedException {
+    public void action(boolean waitExtraTime) throws InterruptedException {
         if (degrees > 0) {
             left.setPower(defaultPower);
             right.setPower(-defaultPower);

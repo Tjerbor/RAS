@@ -1,7 +1,7 @@
 package Commands;
 
 public abstract class AbstractCommand {
-    public abstract void action() throws InterruptedException;
+    public abstract void action(boolean waitExtraTime) throws InterruptedException;
 
     public abstract AbstractCommand backwards();
 

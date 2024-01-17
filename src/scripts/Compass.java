@@ -1,5 +1,6 @@
 package scripts;
 
+import Commands.MoveCommand;
 import lejos.nxt.*;
 import lejos.nxt.addon.CompassHTSensor;
 
@@ -31,27 +32,8 @@ public class Compass {
         }
     }
 
-    private static void testCompass(int waitTime)throws InterruptedException{
-        while(true){
-            mRight.setPower(0);
-            mLeft.setPower(0);
-            Thread.sleep(waitTime);
-            LCD.drawString("1: " + (compass.getDegreesCartesian()), 0, 0);
-            //Threat.sleep(waitTime);
-
-            Thread.sleep(waitTime);
-            LCD.drawString("2: " + (compass.getDegreesCartesian())+ " ", 0, 1);
-            //Thread.sleep(waitTime);
-
-            Thread.sleep(waitTime);
-            LCD.drawString("3: " + (compass.getDegreesCartesian()), 0, 2);
-            //Thread.sleep(waitTime);
-
-            Button.waitForAnyPress();
-            mRight.setPower(GetAdjustedPower(defaultPower,true));
-            mLeft.setPower(-GetAdjustedPower(defaultPower,false));
-            Thread.sleep(waitTime);
-        }
+    private static void testCompass()throws InterruptedException{
+        MoveCommand(20, 2000);
     }
 
     public static float GetTarget(float initial){

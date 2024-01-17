@@ -18,10 +18,10 @@ public class Test {
         history.add(corner.copy());
         history.add(corner.copy());
         Button.waitForAnyPress();
-        history.action();
+        history.action(false);
         Button.waitForAnyPress();
-        (new TurnByDegreesCommand(180)).action();
-        (history.inverse()).action();
+        (new TurnByDegreesCommand(180)).action(false);
+        (history.inverse()).action(false);
 
     }
 }

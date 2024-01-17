@@ -8,6 +8,11 @@ import lejos.nxt.addon.CompassHTSensor;
 import settings.Settings;
 import lejos.nxt.*;
 
+
+import java.util.Date;
+
+import java.util.Date.*;
+
 import static settings.Settings.GetAdjustedPower;
 
 public class LineWithCommands {
@@ -19,6 +24,8 @@ public class LineWithCommands {
     private static int sleep = 50;
     private static CommandSequence history = new CommandSequence();
     private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
+
+    private static long lastTime = 0;
 
     public static void main(String[] args) throws InterruptedException {
         //Calibration();
@@ -34,7 +41,9 @@ public class LineWithCommands {
         float compassInitial = compass.getDegreesCartesian();
         float difference = 0;
         boolean turnedAround = false;
-
+        //Date date = new Date();
+        //This method returns the time in millis
+        //lastTime = date.getTime();
         while (difference > 3 || !turnedAround) {
 
             FollowLight();
@@ -59,11 +68,11 @@ public class LineWithCommands {
 
         mRight.setPower(-GetAdjustedPower(defaultPower,true));
         mLeft.setPower(-GetAdjustedPower(defaultPower,false));
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         mRight.setPower(0);
         mLeft.setPower(0);
-        Thread.sleep(1000);
-        (history.inverse()).action();
+        Thread.sleep(100);
+        (history.inverse()).action(true);
     }
 
     public static void FollowLight() throws InterruptedException {
@@ -71,16 +80,23 @@ public class LineWithCommands {
         int valueLeft = ldLeft.getLightValue();
         AbstractCommand current;
         //
+
+        //Date date = new Date();
+        //long currentTime = date.getTime();
+
         if (valueLeft < valueRight) {
-            current = new MoveCommand(defaultPower, mRight.getPower() - 1 < 0 ? 0 : mRight.getPower() - 2, sleep);
+            current = new MoveCommand(defaultPower, mRight.getPower() - 1 < 0 ? 0 : mRight.getPower() - 2, sleep,0);
 
         } else if (valueLeft > valueRight) {
-            current = new MoveCommand(mRight.getPower() - 1 < 0 ? 0 : mRight.getPower() - 2, defaultPower, sleep);
+            current = new MoveCommand(mRight.getPower() - 1 < 0 ? 0 : mRight.getPower() - 2, defaultPower, sleep,0);
         } else {
-            current = new MoveCommand(defaultPower, defaultPower, sleep);
+            current = new MoveCommand(defaultPower, defaultPower, sleep,0);
         }
+
+        //Date date2 = new Date();
+        //lastTime = date2.getTime();
         history.add(current);
-        current.action();
+        current.action(false);
 
         /*
         int powerRight = 85 - valueLeft;
