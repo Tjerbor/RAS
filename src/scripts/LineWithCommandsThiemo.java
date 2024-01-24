@@ -14,32 +14,58 @@ public class LineWithCommandsThiemo {
     private static final NXTMotor mLeft = Settings.mLeft;
     private static int defaultPower = Settings.defaultPower;
     private static int sleep = 50;
+
+    /**
+     * History stack of executed NXT commands
+     */
     private static CommandSequence history = new CommandSequence();
 
+    /**
+     * Final line follower and backtracking script
+     * Follows line for 20 seconds
+     * Subsequently turns 180 degrees and begins backtracking
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
-        //Calibration();
-        //SetHighLow(50,0);
         LCD.drawString("Start the Loop baby", 0, 0);
         Button.waitForAnyPress();
         LCD.clear();
 
-        /*while (true) {
-            FollowLight();
-        }
-         */
+        //Execution of line follower script
         for (int i = 0; i < 400; i++) {
             FollowLight();
         }
+
+        //Turning the robot by 180 degrees
         (new TurnByDegreesCommand(180)).action();
+
+        //Moving the robot backwards for a short amount of time
+        //to compensate for the bad center of rotation
         (new MoveCommand(-20,300)).action();
+
+        //Backtracking
+        //filled command stack gets inverted and resulting command sequence is executed
         (history.inverse()).action();
     }
 
+    /**
+     * Final line follower script
+     * Based on difference in light sensor readings
+     * @throws InterruptedException
+     */
     public static void FollowLight() throws InterruptedException {
         int valueRight = ldRight.getLightValue();
         int valueLeft = ldLeft.getLightValue();
         AbstractCommand current;
-        //
+
+        /**
+         * If both values are equal, both wheels receive the default power value.
+         *
+         * If the left (right) sensor reading is lower than the right (left),
+         * the left (right) wheel's power is decreased by 2 every time window (50ms)
+         * until either 0 has been hit
+         * or a different condition has been met and power returns to the default value.
+         */
         if (valueLeft < valueRight) {
             current = new MoveCommand(defaultPower, mRight.getPower() - 1 < 0 ? 0 : mRight.getPower() - 2, sleep);
 
@@ -48,6 +74,7 @@ public class LineWithCommandsThiemo {
         } else {
             current = new MoveCommand(defaultPower, defaultPower, sleep);
         }
+        //Newly created command gets added to history and is executed
         history.add(current);
         current.action();
 

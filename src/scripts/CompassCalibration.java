@@ -8,6 +8,12 @@ public class CompassCalibration {
     private static final NXTMotor mRight = new NXTMotor(MotorPort.A);
     private static final NXTMotor mLeft = new NXTMotor(MotorPort.C);
     private static final CompassHTSensor compass = Settings.compass;
+
+    /**
+     * Script for compass calibration
+     * Takes 60 seconds to execute
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         Button.waitForAnyPress();
         compass.startCalibration();

@@ -20,6 +20,15 @@ public class LineWithCommandsJoscha {
     private static CommandSequence history = new CommandSequence();
     private static final CompassHTSensor compass = new CompassHTSensor(SensorPort.S2);
 
+    /**
+     * Experimental line follower and backtracking script
+     *
+     * Robot executes the line follower script
+     * until a full 360 degrees rotation has been completed since starting the script
+     * and subsequently initiates backtracking
+     *
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         //Calibration();
         //SetHighLow(50,0);

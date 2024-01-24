@@ -15,6 +15,10 @@ public class Compass {
 
     private static final double error_epsilon = 0.0;
 
+    /**
+     * Test script for turning the robot 180 degrees and checking resulting trajectory
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
 
         LCD.drawString("Press to start", 0, 0);
@@ -39,6 +43,10 @@ public class Compass {
         }*/
     }
 
+    /**
+     * Test script for turning the robot 180 degrees and checking resulting trajectory
+     * @throws InterruptedException
+     */
     private static void testCompass() throws InterruptedException{
 
         (new MoveCommand(30,2000)).action();
@@ -46,6 +54,11 @@ public class Compass {
         (new MoveCommand(30,2000)).action();
     }
 
+    /**
+     * Returns target degree of 180-degree turn operation
+     * @param initial
+     * @return target_degree
+     */
     public static float GetTarget(float initial){
         float target = (initial - 180);
         if(target < 0){
@@ -54,6 +67,11 @@ public class Compass {
         return target;
     }
 
+    /**
+     * Turns robot 180 degrees based on compass readings
+     * @param test
+     * @throws InterruptedException
+     */
     public static void turn(boolean test) throws InterruptedException {
         mRight.setPower(0);
         mLeft.setPower(0);
@@ -122,6 +140,10 @@ public class Compass {
         }
     }
 
+    /**
+     * Deprecated
+     * @throws InterruptedException
+     */
     private static void turnOld() throws InterruptedException {
         mRight.setPower(0);
         mLeft.setPower(0);

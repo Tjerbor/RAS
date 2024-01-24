@@ -2,6 +2,9 @@ package scripts;
 
 import lejos.nxt.*;
 
+/**
+ * Deprecated
+ */
 public class Line {
     private static final LightSensor ldRight = new LightSensor(SensorPort.S1, true);
     private static final LightSensor ldLeft = new LightSensor(SensorPort.S4, true);
@@ -10,6 +13,10 @@ public class Line {
 
     static int defaultPower = 25;
 
+    /**
+     * Simple line following script
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         //Calibration();
         //SetHighLow(50,0);
@@ -26,6 +33,9 @@ public class Line {
         }
     }
 
+    /**
+     * Simple line following script
+     */
     public static void FollowLight() {
         int valueRight = ldRight.getLightValue();
         int valueLeft = ldLeft.getLightValue();

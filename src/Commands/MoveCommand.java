@@ -3,6 +3,9 @@ package Commands;
 import lejos.nxt.NXTMotor;
 import settings.Settings;
 
+/**
+ * Command for turning two NXT motors with individual power values for a certain time window
+ */
 public class MoveCommand extends AbstractCommand {
     private NXTMotor left;
     private NXTMotor right;
@@ -11,6 +14,14 @@ public class MoveCommand extends AbstractCommand {
     private int stepSize;
 
 
+    /**
+     * Full constructor
+     * @param left
+     * @param right
+     * @param powerLeft
+     * @param powerRight
+     * @param stepSize
+     */
     public MoveCommand(NXTMotor left, NXTMotor right, int powerLeft, int powerRight, int stepSize) {
         this.left = left;
         this.right = right;
@@ -31,6 +42,10 @@ public class MoveCommand extends AbstractCommand {
         this(Settings.defaultPower, stepSize);
     }
 
+    /**
+     * Sets the individual power levels for each motor for the given time window
+     * @throws InterruptedException
+     */
     @Override
     public void action() throws InterruptedException {
         left.setPower(powerLeft);
@@ -40,11 +55,17 @@ public class MoveCommand extends AbstractCommand {
         right.setPower(0);
     }
 
+    /**
+     * Reverts power values by multiplication with -1
+     */
     @Override
     public AbstractCommand backwards() {
         return new MoveCommand(left, right, -powerLeft, -powerRight, stepSize);
     }
 
+    /**
+     * Inverts power values by swapping original values
+     */
     @Override
     public AbstractCommand inverse() {
         return new MoveCommand(left, right, powerRight, powerLeft, stepSize);

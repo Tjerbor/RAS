@@ -4,6 +4,9 @@ import lejos.nxt.Motor;
 import lejos.nxt.Button;
 import lejos.nxt.LCD;
 
+/**
+ * Deprecated
+ */
 public class move {
     public static void main(String[] args) throws InterruptedException {
         LCD.drawString("Program 1", 0, 0);

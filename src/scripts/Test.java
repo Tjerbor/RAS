@@ -5,6 +5,9 @@ import Commands.MoveCommand;
 import Commands.TurnByDegreesCommand;
 import lejos.nxt.Button;
 
+/**
+ * Test class
+ */
 public class Test {
     public static void main(String[] args) throws InterruptedException {
         CommandSequence corner = new CommandSequence(
